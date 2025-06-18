@@ -1,5 +1,8 @@
 #![no_std]
 
+#[cfg(feature = "std")]
+extern crate std;
+
 extern crate alloc;
 
 pub mod path;
@@ -29,7 +32,11 @@ impl fmt::Display for Error {
     }
 }
 
-//impl core::error::Error for Error {}
+#[cfg(feature = "std")]
+impl std::error::Error for Error {}
+
+#[cfg(all(not(feature = "std"), feature = "error"))]
+impl core::error::Error for Error {}
 
 // Create alias for HMAC-SHA256
 type HmacSha256 = Hmac<Sha512>;

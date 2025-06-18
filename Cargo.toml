@@ -12,6 +12,12 @@ readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[features]
+# Enable std library support, including std::error::Error
+std = []
+# Enable core::error::Error
+error = []
+
 [dependencies]
 ed25519-dalek = { version = "1.0", default-features = false, features = ["u64_backend"] }
 hmac = { version = "0.9", default-features = false }
